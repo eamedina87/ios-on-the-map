@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: BaseViewController {
 
     @IBOutlet weak var mRefreshButton: UIBarButtonItem!
     @IBOutlet weak var mAddButton: UIBarButtonItem!

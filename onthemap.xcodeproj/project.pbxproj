@@ -18,6 +18,14 @@
 		0F6A31092141DE910098B3EA /* LocationAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A31082141DE910098B3EA /* LocationAddViewController.swift */; };
 		0F6A310B2141DEBE0098B3EA /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A310A2141DEBE0098B3EA /* LocationTableViewCell.swift */; };
 		0F6A310E2141DF4A0098B3EA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A310D2141DF4A0098B3EA /* Constants.swift */; };
+		0F6A31102141EBB10098B3EA /* UDStudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A310F2141EBB10098B3EA /* UDStudentLocation.swift */; };
+		0F6A31122141EBFC0098B3EA /* UDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A31112141EBFC0098B3EA /* UDConstants.swift */; };
+		0F6A31142141EC0D0098B3EA /* UDClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A31132141EC0D0098B3EA /* UDClient.swift */; };
+		0F6A31162142E64A0098B3EA /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A31152142E64A0098B3EA /* BaseClient.swift */; };
+		0F6A3118214437190098B3EA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A3117214437190098B3EA /* BaseViewController.swift */; };
+		0F6A311A21444CB00098B3EA /* GCDBlackbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A311921444CB00098B3EA /* GCDBlackbox.swift */; };
+		0F6A311C2144643F0098B3EA /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A311B2144643F0098B3EA /* Extension.swift */; };
+		0F6A3120214555320098B3EA /* UDSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A311F214555320098B3EA /* UDSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +42,14 @@
 		0F6A31082141DE910098B3EA /* LocationAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAddViewController.swift; sourceTree = "<group>"; };
 		0F6A310A2141DEBE0098B3EA /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		0F6A310D2141DF4A0098B3EA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0F6A310F2141EBB10098B3EA /* UDStudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDStudentLocation.swift; sourceTree = "<group>"; };
+		0F6A31112141EBFC0098B3EA /* UDConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDConstants.swift; sourceTree = "<group>"; };
+		0F6A31132141EC0D0098B3EA /* UDClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDClient.swift; sourceTree = "<group>"; };
+		0F6A31152142E64A0098B3EA /* BaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
+		0F6A3117214437190098B3EA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		0F6A311921444CB00098B3EA /* GCDBlackbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackbox.swift; sourceTree = "<group>"; };
+		0F6A311B2144643F0098B3EA /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		0F6A311F214555320098B3EA /* UDSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +82,7 @@
 		0F6A30EA2141B9AC0098B3EA /* onthemap */ = {
 			isa = PBXGroup;
 			children = (
+				0F6A311921444CB00098B3EA /* GCDBlackbox.swift */,
 				0F6A30FD2141DD9F0098B3EA /* Model */,
 				0F6A31002141DDFF0098B3EA /* View */,
 				0F6A31012141DE050098B3EA /* Controller */,
@@ -91,6 +108,7 @@
 		0F6A30FE2141DDA90098B3EA /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				0F6A311D21446E420098B3EA /* Base */,
 				0F6A30FF2141DDB30098B3EA /* Udacity */,
 			);
 			path = Clients;
@@ -99,6 +117,10 @@
 		0F6A30FF2141DDB30098B3EA /* Udacity */ = {
 			isa = PBXGroup;
 			children = (
+				0F6A310F2141EBB10098B3EA /* UDStudentLocation.swift */,
+				0F6A31112141EBFC0098B3EA /* UDConstants.swift */,
+				0F6A31132141EC0D0098B3EA /* UDClient.swift */,
+				0F6A311F214555320098B3EA /* UDSession.swift */,
 			);
 			path = Udacity;
 			sourceTree = "<group>";
@@ -114,6 +136,7 @@
 		0F6A31012141DE050098B3EA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0F6A311E21446E500098B3EA /* Base */,
 				0F6A31022141DE480098B3EA /* LoginViewController.swift */,
 				0F6A31042141DE5C0098B3EA /* MapViewController.swift */,
 				0F6A31062141DE6E0098B3EA /* ListViewController.swift */,
@@ -126,8 +149,25 @@
 			isa = PBXGroup;
 			children = (
 				0F6A310D2141DF4A0098B3EA /* Constants.swift */,
+				0F6A311B2144643F0098B3EA /* Extension.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		0F6A311D21446E420098B3EA /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0F6A31152142E64A0098B3EA /* BaseClient.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		0F6A311E21446E500098B3EA /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0F6A3117214437190098B3EA /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,13 +241,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F6A311C2144643F0098B3EA /* Extension.swift in Sources */,
+				0F6A3118214437190098B3EA /* BaseViewController.swift in Sources */,
 				0F6A31032141DE480098B3EA /* LoginViewController.swift in Sources */,
+				0F6A31162142E64A0098B3EA /* BaseClient.swift in Sources */,
 				0F6A310B2141DEBE0098B3EA /* LocationTableViewCell.swift in Sources */,
 				0F6A30EE2141B9AC0098B3EA /* ViewController.swift in Sources */,
+				0F6A31142141EC0D0098B3EA /* UDClient.swift in Sources */,
+				0F6A3120214555320098B3EA /* UDSession.swift in Sources */,
+				0F6A311A21444CB00098B3EA /* GCDBlackbox.swift in Sources */,
 				0F6A30EC2141B9AC0098B3EA /* AppDelegate.swift in Sources */,
+				0F6A31122141EBFC0098B3EA /* UDConstants.swift in Sources */,
 				0F6A31092141DE910098B3EA /* LocationAddViewController.swift in Sources */,
 				0F6A31072141DE6E0098B3EA /* ListViewController.swift in Sources */,
 				0F6A31052141DE5C0098B3EA /* MapViewController.swift in Sources */,
+				0F6A31102141EBB10098B3EA /* UDStudentLocation.swift in Sources */,
 				0F6A310E2141DF4A0098B3EA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

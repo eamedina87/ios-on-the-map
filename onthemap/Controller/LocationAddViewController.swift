@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LocationAddViewController: UIViewController {
+class LocationAddViewController: BaseViewController {
 
     @IBOutlet weak var mFindButton: UIButton!
     @IBOutlet weak var mWebsite: UITextField!

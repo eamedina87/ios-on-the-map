@@ -7,6 +7,10 @@
 //
 
 import Foundation
+class Constants : NSObject{
+
+    let signUpAddress = "https://auth.udacity.com/sign-up"
+    
+}
 
 
-let signUpAddress = "https://auth.udacity.com/sign-up"

@@ -8,14 +8,12 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
 
     @IBOutlet weak var mEmail: UITextField!
     @IBOutlet weak var mPassword: UITextField!
     @IBOutlet weak var mLoginButton: UIButton!
     @IBOutlet weak var mSIgnUpButton: UIButton!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +23,36 @@ class LoginViewController: UIViewController {
 
     @IBAction func doLogin(_ sender: Any) {
         
+        guard let email = mEmail.text, !email.isEmpty else {
+            showAlert(nil, message: "Email should not be empty")
+            return
+        }
+        guard let password = mPassword.text, !password.isEmpty else {
+            showAlert(nil, message: "Password should not be empty")
+            return
+        }
+        
+        UDClient.sharedInstance().postSession(email, password: password){ (results, error) in
+            if let error = error {
+                performUIUpdatesOnMain {
+                    self.showAlert("Login Error", message: "An error ocurred: \(error.userInfo[NSLocalizedDescriptionKey])")
+                }
+                return
+            } else {
+                print("Session: \(results)")
+                performUIUpdatesOnMain {
+                    let mainVC : UIViewController = (self.storyboard?.instantiateViewController(withIdentifier: "tabBar"))!
+                    self.present(mainVC, animated: true){
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+        
     }
     
     @IBAction func doSignUp(_ sender: Any) {
     }
     
-    // MARK: - Navigation
-
-
 
 }
