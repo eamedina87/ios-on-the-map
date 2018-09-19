@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="929-T1-XM8">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -92,7 +92,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-742" y="-253"/>
+            <point key="canvasLocation" x="-1132" y="-162"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="cOm-rU-5rv">
@@ -114,8 +114,7 @@
                                         <rightBarButtonItems>
                                             <barButtonItem title="Item" image="icon_addpin" id="K09-at-9ae">
                                                 <connections>
-                                                    <action selector="addLocation:" destination="CKI-Cf-Jtw" id="3IK-Tu-Fbc"/>
-                                                    <segue destination="CnG-OF-CzV" kind="show" id="NLm-7U-a9A"/>
+                                                    <segue destination="CnG-OF-CzV" kind="show" id="kSj-cq-CEK"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem image="icon_refresh" id="4iO-6N-ZMm">
@@ -380,6 +379,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NLm-7U-a9A"/>
+        <segue reference="kSj-cq-CEK"/>
     </inferredMetricsTieBreakers>
 </document>

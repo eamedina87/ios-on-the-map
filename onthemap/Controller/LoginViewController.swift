@@ -33,25 +33,27 @@ class LoginViewController: BaseViewController {
         }
         
         UDClient.sharedInstance().postSession(email, password: password){ (results, error) in
-            if let error = error {
+            guard error == nil else {
                 performUIUpdatesOnMain {
-                    self.showAlert("Login Error", message: "An error ocurred: \(error.userInfo[NSLocalizedDescriptionKey])")
+                    self.showAlert("Login Error", message: "An error ocurred: \(String(describing: error?.userInfo[NSLocalizedDescriptionKey]))")
                 }
                 return
-            } else {
-                print("Session: \(results)")
-                performUIUpdatesOnMain {
-                    let mainVC : UIViewController = (self.storyboard?.instantiateViewController(withIdentifier: "tabBar"))!
-                    self.present(mainVC, animated: true){
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                }
             }
+            
+            guard let results = results else {
+                return
+            }
+            print("Session: \(String(describing: results))")
+            performUIUpdatesOnMain {
+                let mainVC : UIViewController = (self.storyboard?.instantiateViewController(withIdentifier: "tabBar"))!
+                self.present(mainVC, animated: true, completion: nil)
+            }
+            
         }
-        
     }
     
     @IBAction func doSignUp(_ sender: Any) {
+        
     }
     
 

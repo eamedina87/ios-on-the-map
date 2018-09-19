@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: BaseViewController {
+class MapViewController: BaseViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mRefreshButton: UIBarButtonItem!
     @IBOutlet weak var mAddButton: UIBarButtonItem!
@@ -18,14 +18,52 @@ class MapViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        mMap.delegate = self
     }
-
+    
     @IBAction func refreshList(_ sender: Any) {
-        
+        getApiLocations()
     }
     
     @IBAction func doLogout(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+        getLocations()
+    }
+    
+    func getLocations(){
+        if let locations = getCachedStudentLocations() {
+            addLocationsToMap(locations: locations)
+        } else {
+            getApiLocations()
+        }
+    }
+    
+    func getApiLocations(){
+        getApiStudentLocations(){
+            locations in
+            self.addLocationsToMap(locations: locations)
+        }
+    }
+   
+    func addLocationsToMap(locations: [UDStudentLocation.StudentLocation]){
+        //todo remove previous annotations
+        for location in locations{
+            self.addLocationToMap(location: location)
+        }
+    }
+    
+    func addLocationToMap(location: UDStudentLocation.StudentLocation){
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location.coordinate()
+        performUIUpdatesOnMain {
+            self.mMap.addAnnotation(annotation)
+        }
+    }
+    
+    
 }
+
+

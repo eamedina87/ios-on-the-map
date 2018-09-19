@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 extension Data {
     func toString() -> String? {
@@ -16,8 +17,23 @@ extension Data {
 
 extension NSMutableURLRequest {
     func log() {
-        print("\(httpMethod ?? "") \(self)")
-        print("BODY \n \(httpBody?.toString())")
-        print("HEADERS \n \(allHTTPHeaderFields)")
+        print("\(httpMethod ) \(self)")
+        print("BODY \n \(String(describing: httpBody?.toString()))")
+        print("HEADERS \n \(String(describing: allHTTPHeaderFields))")
     }
 }
+
+extension UDStudentLocation.StudentLocation{
+
+    func fullName()->String{
+        return "\(self.firstName) \(self.lastName)"
+    }
+    
+    func coordinate()->CLLocationCoordinate2D{
+        return CLLocationCoordinate2DMake(self.latitude, self.longitude)
+    }
+    
+}
+
+
+

@@ -21,7 +21,7 @@ struct UDSession: Codable {
     }*/
     struct Account:Codable {
         let registered : Bool
-        let key : Int32
+        let key : String
     }
     
     struct Session:Codable {

@@ -18,9 +18,48 @@ class UDClient: BaseClient {
         return Singleton.sharedInstance
     }
     
+    // MARK: GET Convenience Methods
+    
+    func getStudentLocations(completionHandlerForPostSession: @escaping (_ result: [UDStudentLocation.StudentLocation]?, _ error: NSError?) -> Void){
+        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
+        let parameters = [String:AnyObject]()
+    
+        /* 2. Make the request */
+        let task = taskForGETMethod("", isForParse: true, parameters: parameters){
+            result, error in
+            
+            func returnError(){
+                completionHandlerForPostSession(nil, NSError(domain: "getStudentLocation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getStudentLocation"]))
+            }
+            
+            guard (error == nil) else {
+                completionHandlerForPostSession(nil, error)
+                return
+            }
+            
+            guard let data = result else {
+                returnError()
+                return
+            }
+            
+            print(data)
+            do {
+                let decoder = JSONDecoder()
+                let response = try decoder.decode(UDStudentLocation.self, from: data)
+                if let returnData : [UDStudentLocation.StudentLocation] = response.results {
+                    completionHandlerForPostSession(returnData, nil)
+                } else {
+                    returnError()
+                }
+            } catch{
+                returnError()
+            }
+        }
+    }
+    
+    
     // MARK: POST Convenience Methods
-  
-    func postSession(_ username: String, password: String, completionHandlerForPostSession: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) {
+    func postSession(_ username: String, password: String, completionHandlerForPostSession: @escaping (_ result: String?, _ error: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let parameters = [String:AnyObject]()
@@ -28,25 +67,38 @@ class UDClient: BaseClient {
         let jsonBody = "{\"udacity\": {\"\(JsonBody.username)\": \"\(username)\", \"\(JsonBody.password)\": \"\(password)\"}}"
         /* 2. Make the request */
         let task = taskForPOSTMethod(false, parameters: parameters, jsonBody: jsonBody){
-            (result, error) in
-        
-        
-            if let error = error {
+            result, error in
+            
+            func returnError(){
+                completionHandlerForPostSession(nil, NSError(domain: "postToSession parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse postToSession"]))
+            }
+            
+            guard (error == nil) else {
                 completionHandlerForPostSession(nil, error)
-            } else {
+                return
+            }
+            
+            guard let data = result else {
+                returnError()
+                return
+            }
+            
+            print(data)
+            do {
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(UDSession.self, from: data)
-                
-                if let results = results?[UDClient.JsonResponse.session] as? String {
-                    completionHandlerForPostSession(results, nil)
+                if let returnData : String = response.session.id {
+                    completionHandlerForPostSession(returnData, nil)
                 } else {
-                    completionHandlerForPostSession(nil, NSError(domain: "postToSession parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse postToSession"]))
+                    returnError()
                 }
+            } catch{
+                returnError()
             }
         }
     }
     
-    /*func postStudentLocation(_ student: UDStudentLocation, completionHandlerForPostStudentLocation: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) {
+    func postStudentLocation(_ student: UDStudentLocation.StudentLocation, completionHandlerForPostStudentLocation: @escaping (_ result: String?, _ error: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let parameters = [String:String]()
@@ -58,22 +110,39 @@ class UDClient: BaseClient {
         let task = taskForPOSTMethod(true, parameters: parameters as [String:AnyObject], jsonBody: jsonBody){
             (data, error) in
             
-            
-            /* 3. Send the desired value(s) to completion handler */
-            if let error = error {
-                completionHandlerForPostStudentLocation(nil, error)
-            } else {
-                let decoder = JSONDecoder()
-                let response = try decoder.decode(UDSession.self, from: data)
-                
-                if let results = results?[UDClient.JsonResponse.objectId] as? String {
-                    completionHandlerForPostStudentLocation(results, nil)
+            func returnError(error:NSError? = nil){
+                if let error = error{
+                    completionHandlerForPostStudentLocation(nil, error)
                 } else {
-                    completionHandlerForPostStudentLocation(nil, NSError(domain: "postToStudentLocation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse postToStudentLocation"]))
+                completionHandlerForPostStudentLocation(nil, NSError(domain: "postToStudentLocation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse postToStudentLocation"]))
                 }
             }
+            
+            /* 3. Send the desired value(s) to completion handler */
+            
+            guard (error == nil) else {
+                returnError(error: error)
+                return
+            }
+            
+            guard let data = data else {
+                returnError()
+                return
+            }
+            
+            do{
+                let decoder = JSONDecoder()
+                let response = try decoder.decode(UDResponse.self, from: data)
+                if let returnData : String = response.objectId{
+                    completionHandlerForPostStudentLocation(returnData, nil)
+                } else {
+                    returnError()
+                }
+            } catch {
+                returnError()
+            }
         }
-    }*/
+    }
     
     //MARK: Helper
     static func udacityURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil, isForParse:Bool = false) -> URL {
@@ -90,7 +159,5 @@ class UDClient: BaseClient {
         }
         return components.url!
     }
-    
-    
-    
+
 }
