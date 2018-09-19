@@ -52,7 +52,7 @@ class ListViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         let mLocation = mLocations[indexPath.row]
         let cell = mList.dequeueReusableCell(withIdentifier: "listCell") as! LocationTableViewCell
         cell.mName.text = mLocation.fullName()
-        cell.mWebPage.text = mLocation.mediaUrl
+        cell.mWebPage.text = mLocation.mediaURL
         return cell
     }
     

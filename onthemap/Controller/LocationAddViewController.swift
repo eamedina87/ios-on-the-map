@@ -40,7 +40,7 @@ class LocationAddViewController: BaseViewController {
         student.lastName = ""
         student.latitude = -1
         student.longitude = -1
-        student.mediaUrl = website
+        student.mediaURL = website
         student.uniqueKey = String(Date().timeIntervalSince1970)
         
         UDClient.sharedInstance().postStudentLocation(student){

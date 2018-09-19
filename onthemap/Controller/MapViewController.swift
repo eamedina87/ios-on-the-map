@@ -19,6 +19,7 @@ class MapViewController: BaseViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mMap.delegate = self
+        mMap.isZoomEnabled = true
     }
     
     @IBAction func refreshList(_ sender: Any) {
@@ -56,9 +57,9 @@ class MapViewController: BaseViewController, MKMapViewDelegate {
     }
     
     func addLocationToMap(location: UDStudentLocation.StudentLocation){
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location.coordinate()
         performUIUpdatesOnMain {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location.coordinate()
             self.mMap.addAnnotation(annotation)
         }
     }

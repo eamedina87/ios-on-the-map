@@ -22,8 +22,8 @@ class UDClient: BaseClient {
     
     func getStudentLocations(completionHandlerForPostSession: @escaping (_ result: [UDStudentLocation.StudentLocation]?, _ error: NSError?) -> Void){
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let parameters = [String:AnyObject]()
-    
+        var parameters = [String:AnyObject]()
+        parameters[UDClient.ParameterKeys.Limit] = UDClient.Constants.ParseApiLimit as AnyObject?
         /* 2. Make the request */
         let task = taskForGETMethod("", isForParse: true, parameters: parameters){
             result, error in
@@ -104,7 +104,7 @@ class UDClient: BaseClient {
         let parameters = [String:String]()
         
         //\"uniqueKey\": \"1234\"
-        let jsonBody = "{\"\(JsonBody.firstName)\": \"\(student.firstName)\", \"\(JsonBody.lastName)\": \"\(student.lastName)\",\"\(JsonBody.mapString)\": \"\(student.mapString)\", \"\(JsonBody.mediaUrl)\": \"\(student.mediaUrl)\",\"\(JsonBody.latitude)\": \(student.latitude), \"\(JsonBody.longitude)\": \(student.longitude)}"//.data(using: .utf8).
+        let jsonBody = "{\"\(JsonBody.firstName)\": \"\(student.firstName)\", \"\(JsonBody.lastName)\": \"\(student.lastName)\",\"\(JsonBody.mapString)\": \"\(student.mapString)\", \"\(JsonBody.mediaUrl)\": \"\(student.mediaURL)\",\"\(JsonBody.latitude)\": \(student.latitude), \"\(JsonBody.longitude)\": \(student.longitude)}"//.data(using: .utf8).
         
         /* 2. Make the request */
         let task = taskForPOSTMethod(true, parameters: parameters as [String:AnyObject], jsonBody: jsonBody){

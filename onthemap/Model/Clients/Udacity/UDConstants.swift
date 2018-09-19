@@ -27,7 +27,7 @@ extension UDClient {
         static let ParseApiHost = "parse.udacity.com"
         static let ParseApiPath = "/parse/classes/StudentLocation"
         
-        static let ParseApiLimit = "10"
+        static let ParseApiLimit = "90"
         
     }
     

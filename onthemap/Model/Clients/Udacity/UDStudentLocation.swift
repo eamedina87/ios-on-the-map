@@ -14,26 +14,20 @@ struct UDStudentLocation: Codable {
     
     struct StudentLocation : Codable {
         
-/*"createdAt": "2015-02-25T01:10:38.103Z",
- "firstName": "Jarrod",
- "lastName": "Parkes",
- "latitude": 34.7303688,
- "longitude": -86.5861037,
- "mapString": "Huntsville, Alabama ",
- "mediaURL": "https://www.linkedin.com/in/jarrodparkes",
- "objectId": "JhOtcRkxsh",
- "uniqueKey": "996618664",
- "updatedAt": "2015-03-09T22:04:50.315Z"*/
+/*
+         "results":[{"objectId":"zHkIrIWrOf","uniqueKey":"10853850995","firstName":"Rodrigo","lastName":"Nobrega","mapString":"SÃ£o Paulo","mediaURL":"http://www.google.com","latitude":-23.5473991,"longitude":-46.6367427,"createdAt":"2018-09-19T01:17:17.013Z","updatedAt":"2018-09-19T01:17:17.013Z"},{"objectId":"V17vn7tPmb","uniqueKey":"10853850995","firstName":"Rodrigo","lastName":"Nobrega","mapString":"SÃ£o Paulo","mediaURL":"http://www.google.com","latitude":-23.5473991,"longitude":-46.6367427,"createdAt":"2018-0
+         */
         
-        var createdAt : String
         var objectId : String
         var uniqueKey : String?
         var firstName : String
         var lastName : String
         var mapString : String?
-        var mediaUrl : String
+        var mediaURL : String
         var latitude : Double
         var longitude : Double
+        var createdAt : String
+        var updatedAt : String
         
         init() {
             self.createdAt = ""
@@ -42,9 +36,10 @@ struct UDStudentLocation: Codable {
             self.firstName = ""
             self.lastName = ""
             self.mapString = ""
-            self.mediaUrl = ""
+            self.mediaURL = ""
             self.latitude = -1
             self.longitude = -1
+            self.updatedAt = ""
         }
         
     }
