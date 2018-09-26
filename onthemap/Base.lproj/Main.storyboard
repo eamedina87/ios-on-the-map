@@ -321,7 +321,7 @@
                                     <action selector="findLocation:" destination="CnG-OF-CzV" eventType="touchUpInside" id="ydw-ki-jA9"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="WGn-5x-XQ3">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="WGn-5x-XQ3">
                                 <rect key="frame" x="177" y="390" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
@@ -385,7 +385,7 @@
                                     <action selector="finishLocation:" destination="7eJ-sJ-ddS" eventType="touchUpInside" id="UHF-Jx-MGM"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AET-bp-eCL">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AET-bp-eCL">
                                 <rect key="frame" x="177" y="585" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
