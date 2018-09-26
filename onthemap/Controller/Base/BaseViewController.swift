@@ -21,10 +21,10 @@ class BaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func showAlert(_ title:String?, message:String){
+    func showAlert(_ title:String?, message:String, completionHandler: @escaping (()->Void)){
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel){ action in
-            alertController.dismiss(animated: true, completion: nil)
+            alertController.dismiss(animated: true, completion: completionHandler)
         }
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
@@ -36,13 +36,13 @@ class BaseViewController: UIViewController {
             
             guard error == nil else {
                 performUIUpdatesOnMain {
-                    self.showAlert("Student Locations Error", message: "An error ocurred: \(String(describing: error?.userInfo[NSLocalizedDescriptionKey]))")
+                    self.showAlert("Student Locations Error", message: "An error ocurred: \(String(describing: error?.userInfo[NSLocalizedDescriptionKey]))"){}
                 }
                 return
             }
             
             guard let locations = locations else {
-                self.showAlert("Student Locations Error", message: "An error ocurred obtaining the locations. Please retry!")
+                self.showAlert("Student Locations Error", message: "An error ocurred obtaining the locations. Please retry!"){}
                 return
             }
             

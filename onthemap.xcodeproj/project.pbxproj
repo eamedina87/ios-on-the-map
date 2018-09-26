@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F3D663E21526295004217E6 /* UDResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3D663D21526294004217E6 /* UDResponse.swift */; };
+		0F408358215AF15300DBA2E4 /* LocationFindLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F408357215AF15300DBA2E4 /* LocationFindLocationViewController.swift */; };
 		0F6A30EC2141B9AC0098B3EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A30EB2141B9AC0098B3EA /* AppDelegate.swift */; };
 		0F6A30EE2141B9AC0098B3EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6A30ED2141B9AC0098B3EA /* ViewController.swift */; };
 		0F6A30F12141B9AC0098B3EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F6A30EF2141B9AC0098B3EA /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		0F3D663D21526294004217E6 /* UDResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDResponse.swift; sourceTree = "<group>"; };
+		0F408357215AF15300DBA2E4 /* LocationFindLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFindLocationViewController.swift; sourceTree = "<group>"; };
 		0F6A30E82141B9AC0098B3EA /* onthemap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = onthemap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F6A30EB2141B9AC0098B3EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F6A30ED2141B9AC0098B3EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				0F6A31042141DE5C0098B3EA /* MapViewController.swift */,
 				0F6A31062141DE6E0098B3EA /* ListViewController.swift */,
 				0F6A31082141DE910098B3EA /* LocationAddViewController.swift */,
+				0F408357215AF15300DBA2E4 /* LocationFindLocationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				0F6A31142141EC0D0098B3EA /* UDClient.swift in Sources */,
 				0F6A3120214555320098B3EA /* UDSession.swift in Sources */,
 				0F6A311A21444CB00098B3EA /* GCDBlackbox.swift in Sources */,
+				0F408358215AF15300DBA2E4 /* LocationFindLocationViewController.swift in Sources */,
 				0F6A30EC2141B9AC0098B3EA /* AppDelegate.swift in Sources */,
 				0F6A31122141EBFC0098B3EA /* UDConstants.swift in Sources */,
 				0F3D663E21526295004217E6 /* UDResponse.swift in Sources */,

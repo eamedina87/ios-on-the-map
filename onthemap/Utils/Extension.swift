@@ -26,11 +26,20 @@ extension NSMutableURLRequest {
 extension UDStudentLocation.StudentLocation{
 
     func fullName()->String{
-        return "\(self.firstName) \(self.lastName)"
+        guard self.firstName == nil, self.lastName == nil else{
+            return "\(String(describing: self.firstName!)) \(String(describing: self.lastName!))"
+        }
+        guard self.firstName == nil else {
+            return "\(String(describing: self.firstName!))"
+        }
+        return ""
     }
     
     func coordinate()->CLLocationCoordinate2D{
-        return CLLocationCoordinate2DMake(self.latitude, self.longitude)
+        guard self.latitude == nil, self.longitude == nil else {
+            return CLLocationCoordinate2DMake(self.latitude!, self.longitude!)
+        }
+        return CLLocationCoordinate2DMake(0, 0)
     }
     
 }

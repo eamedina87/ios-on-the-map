@@ -15,6 +15,8 @@ class ListViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mList.dataSource = self
+        mList.delegate = self
         getLocations()
     }
 
@@ -54,6 +56,10 @@ class ListViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         cell.mName.text = mLocation.fullName()
         cell.mWebPage.text = mLocation.mediaURL
         return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
 }

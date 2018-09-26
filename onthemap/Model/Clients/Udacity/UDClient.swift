@@ -22,39 +22,56 @@ class UDClient: BaseClient {
     
     func getStudentLocations(completionHandlerForPostSession: @escaping (_ result: [UDStudentLocation.StudentLocation]?, _ error: NSError?) -> Void){
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        var parameters = [String:AnyObject]()
-        parameters[UDClient.ParameterKeys.Limit] = UDClient.Constants.ParseApiLimit as AnyObject?
-        /* 2. Make the request */
-        let task = taskForGETMethod("", isForParse: true, parameters: parameters){
-            result, error in
-            
-            func returnError(){
-                completionHandlerForPostSession(nil, NSError(domain: "getStudentLocation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getStudentLocation"]))
+        var finalResponse = [UDStudentLocation.StudentLocation?](repeating: nil, count: 100)
+        for i in 1...2{
+            var parameters = [String:AnyObject]()
+            if (i==2){
+                parameters[UDClient.ParameterKeys.Skip] = UDClient.Constants.ParseApiSkip as AnyObject?
             }
+            parameters[UDClient.ParameterKeys.Limit] = UDClient.Constants.ParseApiLimit as AnyObject?
             
-            guard (error == nil) else {
-                completionHandlerForPostSession(nil, error)
-                return
-            }
-            
-            guard let data = result else {
-                returnError()
-                return
-            }
-            
-            print(data)
-            do {
-                let decoder = JSONDecoder()
-                let response = try decoder.decode(UDStudentLocation.self, from: data)
-                if let returnData : [UDStudentLocation.StudentLocation] = response.results {
-                    completionHandlerForPostSession(returnData, nil)
-                } else {
+            /* 2. Make the request */
+            let task = taskForGETMethod("", isForParse: true, parameters: parameters){
+                result, error in
+                
+                func returnError(){
+                    completionHandlerForPostSession(nil, NSError(domain: "getStudentLocation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getStudentLocation"]))
+                }
+                
+                guard (error == nil) else {
+                    completionHandlerForPostSession(nil, error)
+                    return
+                }
+                
+                guard let data = result else {
+                    returnError()
+                    return
+                }
+                
+                print(data)
+                do {
+                    let decoder = JSONDecoder()
+                    let response = try decoder.decode(UDStudentLocation.self, from: data)
+                    if let returnData : [UDStudentLocation.StudentLocation] = response.results {
+                        var add = 0
+                        if (i==2){
+                            add = 50
+                        }
+                            for j in 0...49{
+                                finalResponse[j+add] = returnData[j]
+                            }
+                        if (i==2){
+                            completionHandlerForPostSession(finalResponse as! [UDStudentLocation.StudentLocation], nil)
+                        }
+                    } else {
+                        returnError()
+                    }
+                } catch{
                     returnError()
                 }
-            } catch{
-                returnError()
             }
         }
+        
     }
     
     
@@ -104,7 +121,7 @@ class UDClient: BaseClient {
         let parameters = [String:String]()
         
         //\"uniqueKey\": \"1234\"
-        let jsonBody = "{\"\(JsonBody.firstName)\": \"\(student.firstName)\", \"\(JsonBody.lastName)\": \"\(student.lastName)\",\"\(JsonBody.mapString)\": \"\(student.mapString)\", \"\(JsonBody.mediaUrl)\": \"\(student.mediaURL)\",\"\(JsonBody.latitude)\": \(student.latitude), \"\(JsonBody.longitude)\": \(student.longitude)}"//.data(using: .utf8).
+        let jsonBody = "{\"\(JsonBody.firstName)\": \"\(student.firstName!)\", \"\(JsonBody.lastName)\": \"\(student.lastName!)\",\"\(JsonBody.mapString)\": \"\(student.mapString!)\", \"\(JsonBody.mediaUrl)\": \"\(student.mediaURL!)\",\"\(JsonBody.latitude)\": \(student.latitude!), \"\(JsonBody.longitude)\": \(student.longitude!)}"//.data(using: .utf8).
         
         /* 2. Make the request */
         let task = taskForPOSTMethod(true, parameters: parameters as [String:AnyObject], jsonBody: jsonBody){

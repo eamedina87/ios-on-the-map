@@ -31,6 +31,7 @@ class BaseClient: NSObject {
         }
         
         /* 4. Make the request */
+        print(request.url)
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
             func sendError(_ error: String) {

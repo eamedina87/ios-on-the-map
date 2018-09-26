@@ -27,7 +27,8 @@ extension UDClient {
         static let ParseApiHost = "parse.udacity.com"
         static let ParseApiPath = "/parse/classes/StudentLocation"
         
-        static let ParseApiLimit = "90"
+        static let ParseApiLimit = "50"
+        static let ParseApiSkip = "50"
         
     }
     
@@ -37,6 +38,7 @@ extension UDClient {
         static let RequestToken = "request_token"
         static let Query = "query"
         static let Limit = "limit"
+        static let Skip = "skip"
     }
     
     //MARK: JSON REQUEST BODY
