@@ -138,6 +138,70 @@ class BaseClient: NSObject {
         return task
     }
 
+    func taskForDELETEMethod(_ parameters: [String:AnyObject], completionHandlerForDELETE: @escaping (_ result: Data?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+        
+        /* 1. Set the parameters */
+        var newParameters = parameters
+        
+        /* 2/3. Build the URL, Configure the request */
+        let url = UDClient.udacityURLFromParameters(newParameters, withPathExtension: "", isForParse: false)
+        let request = NSMutableURLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        request.log()
+        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            func sendError(_ error: String) {
+                print(error)
+                let userInfo = [NSLocalizedDescriptionKey : error]
+                completionHandlerForDELETE(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+            }
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                sendError("There was an error with your request: \(error!)")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                let message = ( (response as? HTTPURLResponse)?.statusCode == 403 ? "User or password are incorrect" : "Your request returned a status code other than 2xx!")
+                sendError(message)
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                sendError("No data was returned by the request!")
+                return
+            }
+        
+            var newData = data
+            //For Session Post Request, data includes five characters initially that must be dismissed
+            let range = Range(5..<data.count)
+            newData = data.subdata(in: range)
+            
+            
+            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            completionHandlerForDELETE(newData, nil)
+        }
+        
+        /* 7. Start the request */
+        task.resume()
+        
+        return task
+    }
+    
     // MARK: HELPER
     private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: NSError?) -> Void) {
         

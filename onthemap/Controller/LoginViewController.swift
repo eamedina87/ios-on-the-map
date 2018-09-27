@@ -49,9 +49,12 @@ class LoginViewController: BaseViewController {
                 }
                 return
             }
-            print("Session: \(String(describing: results))")
+            let session = String(describing: results)
+            UserData.shared.sessionId = session
+            print("Session: \(session)")
             performUIUpdatesOnMain {
                 self.hideIndicatorAndEnableUI()
+                self.clearTextFields()
                 let mainVC : UIViewController = (self.storyboard?.instantiateViewController(withIdentifier: "tabBar"))!
                 self.present(mainVC, animated: true, completion: nil)
             }
@@ -61,11 +64,7 @@ class LoginViewController: BaseViewController {
     
     @IBAction func doSignUp(_ sender: Any) {
         let url : URL = URL(string: "https://www.udacity.com")!
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.openURL(url)
-        }
+        goToUrl(url: url)
     }
     
     func showIndicatorAndBlockUI(){
@@ -76,6 +75,11 @@ class LoginViewController: BaseViewController {
     func hideIndicatorAndEnableUI(){
         mProgressIndicator.stopAnimating()
         setUIEnabled(value:true)
+    }
+    
+    func clearTextFields(){
+        mEmail.text = ""
+        mPassword.text = ""
     }
     
     func setUIEnabled(value:Bool){

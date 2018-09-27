@@ -29,6 +29,7 @@ class UDClient: BaseClient {
                 parameters[UDClient.ParameterKeys.Skip] = UDClient.Constants.ParseApiSkip as AnyObject?
             }
             parameters[UDClient.ParameterKeys.Limit] = UDClient.Constants.ParseApiLimit as AnyObject?
+            parameters[UDClient.ParameterKeys.Order] = UDClient.Constants.ParseApiOrder as AnyObject?
             
             /* 2. Make the request */
             let task = taskForGETMethod("", isForParse: true, parameters: parameters){
@@ -112,6 +113,33 @@ class UDClient: BaseClient {
             } catch{
                 returnError()
             }
+        }
+    }
+    
+    func deleteSession(completionHandlerForDELETE: @escaping (Data?, NSError?) -> Void) -> Void {
+        let parameters = [String:AnyObject]()
+        let task = taskForDELETEMethod(parameters){
+            data, error in
+            func returnError(error:NSError? = nil){
+                if let error = error{
+                    completionHandlerForDELETE(nil, error)
+                } else {
+                    completionHandlerForDELETE(nil, NSError(domain: "postToStudentLocation parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse postToStudentLocation"]))
+                }
+            }
+            
+            /* 3. Send the desired value(s) to completion handler */
+            
+            guard (error == nil) else {
+                returnError(error: error)
+                return
+            }
+            
+            guard let data = data else {
+                returnError()
+                return
+            }
+            completionHandlerForDELETE(data, nil)
         }
     }
     

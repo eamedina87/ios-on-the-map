@@ -29,6 +29,7 @@ extension UDClient {
         
         static let ParseApiLimit = "50"
         static let ParseApiSkip = "50"
+        static let ParseApiOrder = "-updatedAt"
         
     }
     
@@ -39,6 +40,7 @@ extension UDClient {
         static let Query = "query"
         static let Limit = "limit"
         static let Skip = "skip"
+        static let Order = "order"
     }
     
     //MARK: JSON REQUEST BODY

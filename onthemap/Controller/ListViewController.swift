@@ -26,12 +26,15 @@ class ListViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func doLogout(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        doApiLogout {
+            data, error in
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     func getLocations(){
-        if let locations = getCachedStudentLocations() {
-            mLocations = locations
+        if (getCachedStudentLocations()?.count)! > 0{
+            mLocations = getCachedStudentLocations()!
             mList.reloadData()
         } else {
             getApiLocations()
@@ -60,6 +63,15 @@ class ListViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let mLocation = mLocations[indexPath.row]
+        if let mediaURL = mLocation.mediaURL{
+            let url : URL = URL(string: mediaURL)!
+            goToUrl(url: url)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

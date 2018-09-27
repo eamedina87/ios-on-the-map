@@ -47,13 +47,25 @@ class BaseViewController: UIViewController {
             }
             
             print("Locations: \(locations.count)")
-            (UIApplication.shared.delegate as! AppDelegate).locations = locations
+            UserData.shared.locations = locations
             completionHandler(locations)
         }
     }
     
+    func doApiLogout(completionHandler: @escaping ((Data?, NSError?)->Void)){
+        UDClient.sharedInstance().deleteSession(completionHandlerForDELETE: completionHandler)
+    }
+    
     func getCachedStudentLocations() -> [UDStudentLocation.StudentLocation]? {
-        return (UIApplication.shared.delegate as! AppDelegate).locations
+        return UserData.shared.locations
+    }
+    
+    func goToUrl(url:URL){
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
     }
     
 
