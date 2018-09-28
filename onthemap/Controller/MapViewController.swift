@@ -52,7 +52,7 @@ class MapViewController: BaseViewController, MKMapViewDelegate {
         return pinView
     }
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+    /*func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(calloutTapped(_:)))
         view.addGestureRecognizer(gesture)
     }
@@ -64,7 +64,17 @@ class MapViewController: BaseViewController, MKMapViewDelegate {
             goToUrl(url: url)
         }
         
+    }*/
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let link = view.annotation?.subtitle  {
+            let url : URL = URL(string: link!)!
+            goToUrl(url: url)
+        }
     }
+
+    
+    
     
     func getLocations(){
         if (getCachedStudentLocations()?.count)! > 0 {

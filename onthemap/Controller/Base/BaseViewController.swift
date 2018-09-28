@@ -61,10 +61,8 @@ class BaseViewController: UIViewController {
     }
     
     func goToUrl(url:URL){
-        if #available(iOS 10.0, *) {
+        if (UIApplication.shared.canOpenURL(url)){
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.openURL(url)
         }
     }
     

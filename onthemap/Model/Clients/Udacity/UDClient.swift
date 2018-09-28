@@ -62,7 +62,7 @@ class UDClient: BaseClient {
                                 finalResponse[j+add] = returnData[j]
                             }
                         if (i==2){
-                            completionHandlerForPostSession(finalResponse as! [UDStudentLocation.StudentLocation], nil)
+                            completionHandlerForPostSession(finalResponse as? [UDStudentLocation.StudentLocation], nil)
                         }
                     } else {
                         returnError()
